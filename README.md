@@ -29,19 +29,30 @@ Features
 Example
 -------
 ### ABNF
-    word	= [A-Za-z]+
-    list	= word *[ ',' word ]    
+
+```
+word	= [A-Za-z]+
+list	= word *[ ',' word ]
+```
 ### Comprehend, using objects:
-    $word	= new Repeat(new Regex('/[a-z][A-Z]/'), 1);
-    $list	= new Sequence($word, new Repeat(new Sequence(',', $word)));
+```php
+$word	= new Repeat(new Regex('/[a-z][A-Z]/'), 1);
+$list	= new Sequence($word, new Repeat(new Sequence(',', $word)));
+```
 ### Comprehend, using objects and array notation:
-    $word	= new Repeat(new Regex('/[a-z][A-Z]/'), 1);
-    $list	= new Sequence($word, new Repeat([',', $word]));
+```php
+$word	= new Repeat(new Regex('/[a-z][A-Z]/'), 1);
+$list	= new Sequence($word, new Repeat([',', $word]));
+```
 ### Comprehend, using library functions:
-    $word	= plus(regex('/[a-z][A-Z]/'));
-    $list	= s($word, star([',', $word]));
+```php
+$word	= plus(regex('/[a-z][A-Z]/'));
+$list	= s($word, star([',', $word]));
+```
 ### Comprehend, using Ruleset constructor
-    $list   = new Ruleset([
-        'word'           => plus(regex('/[a-z][A-Z]/')), 
-        Ruleset::ROOT => s($word, star([',', $word])),
-    ]);
+```php
+$list   = new Ruleset([
+    'word'        => plus(regex('/[a-z][A-Z]/')), 
+    Ruleset::ROOT => s($word, star([',', $word])),
+]);
+```
